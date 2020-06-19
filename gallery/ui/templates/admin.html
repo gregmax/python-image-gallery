@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin page</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h1>List of users</h1>
+    {% block content %}
+    {% for user in users %}
+    <div>
+      <p>Username: <a href="/admin/edit/{{ user[0] }}">{{ user[0] }}</a></p>
+      <p>Full name: {{ user[1] }}</p>
+	<form action="/admin/delete/{{ user[0] }}">
+	  <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+	</form>
+    </div>
+    {% endfor %}
+    <br />
+    <div>
+      <a href="/admin/adduser/">Add User</a>
+      </div>
+    {% endblock %}
+  </body>
+</html>

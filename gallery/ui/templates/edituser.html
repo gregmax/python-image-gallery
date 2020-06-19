@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit {{ userinfo[0] }}</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    {% block content %}
+    <div>
+      <h3>Edit {{ userinfo[0] }}</h3>
+      <form method="post">
+	Password: <input name="password" id="password" value="{{ request.form['password'] or userinfo[1] }}" /><br />
+	Full name: <input name="fullname" id="fullname" value="{{ request.form['fullname'] or userinfo[2] }}" /><br />
+	<input type="submit" value="Save" />
+      </form>
+    </div>
+    {% endblock %}
+  </body>
+</html>

@@ -16,7 +16,7 @@ def get_password():
 
 def connect():
     global connection
-    connection = psycopg2.connect(host=db_host, dbname=db_name, user=db_user, password=get_password())
+    connection = psycopg2.connect(host=db_host, dbname=db_name, user=db_user, password="simple")
 
 def execute(query,args=None):
     global connection
