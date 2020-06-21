@@ -1,6 +1,6 @@
 import psycopg2
 import json
-from secrets import get_secret_image_gallery
+from gallery.ui.secrets import get_secret_image_gallery
 
 db_name = "image_gallery"
 

@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, jsonify, redirect, url_for
-import db_functions
+#import db_functions
+from gallery.ui import db_functions
 
 app = Flask(__name__)
 

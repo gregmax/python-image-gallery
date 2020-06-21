@@ -49,8 +49,8 @@ def get_object(bucket_name, key):
 
 def main():
     #create_bucket('edu.au.cc.img-gallery')
-    #put_object('edu.au.cc.img-gallery', 'banana', 'yellow')
-    print(get_object('edu.au.cc.img-gallery', 'banana'))
+    put_object('edu.au.cc.img-gallery', 'banana', 'green')
+    print(get_object('edu.au.cc.img-gallery', 'banana')['Body'].read())
 
 if __name__ == '__main__':
     main()
