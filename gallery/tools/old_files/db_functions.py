@@ -32,35 +32,25 @@ def connect():
     connection.set_session(autocommit=True)
 
 
-# Retrieve one user
-def list_user(user):
-    global connection
-    cur = connection.cursor()
-    data = (user,)
-
-    # Grab all users for DB and print results
-    cur.execute("SELECT username, password, full_name FROM users WHERE username=%s", data)
-
-    results = cur.fetchone()
-    # Close cursor and return to menu
-    
-    connection.close()
-    return results
-
-# Retrieve list of users
+# Read list of users
 def list_users():
     global connection
     cur = connection.cursor()
 
     # Grab all users for DB and print results
-    cur.execute("SELECT username, full_name FROM users")
+    cur.execute(select_all_users)
+
+    print('username\tpassword\tfull name')
+
+    print('-----------------------------------------')
 
     results = cur.fetchall()
+    for row in results:
+        print("{: <15} {: <15} {: <15}".format(*row))
     # Close cursor and return to menu
-
+    
     connection.close()
-    return results
-
+    return
 
 
 # Create new user
@@ -99,9 +89,12 @@ def add_user():
 
 
 # Update user
-def edit_user(username, password, fname):
+def edit_user():
     global connection
     cur = connection.cursor()
+
+    # Ask user for input
+    user = str(input("Username> "))
     
     # SQL statements
     sql_statement1 = "UPDATE users SET password=%s, full_name=%s WHERE username=%s;"
@@ -114,13 +107,15 @@ def edit_user(username, password, fname):
 
     for record in results:
         if user == record[0]:
-            if len(password) == 0 and len(fname) > 0:
-                cur.execute(sql_statement2, (fname, username))
+            password = str(input("New password (press enter to keep current)> "))
+            fullname = str(input("New full name (press enter to keep current)> "))
+            if len(password) == 0 and len(fullname) > 0:
+                cur.execute(sql_statement2, (fullname, user))
                 connection.commit()
                 connection.close()
                 return
-            elif len(password) > 0 and len(fname) == 0:
-                cur.execute(sql_statement3, (password, username))
+            elif len(password) > 0 and len(fullname) == 0:
+                cur.execute(sql_statement3, (password, user))
                 connection.commit()
                 connection.close()
                 return
@@ -129,7 +124,7 @@ def edit_user(username, password, fname):
                 connection.close()
                 return
             elif len(password) > 0 and len(fullname) > 0:
-                cur.execute(sql_statement1, (password, fullname, username))
+                cur.execute(sql_statement1, (password, fullname, user))
                 connection.commit()
                 connection.close()
                 return

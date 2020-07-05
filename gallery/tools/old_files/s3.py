@@ -41,7 +41,7 @@ def put_object(bucket_name, key, value):
 def get_object(bucket_name, key):
     try:
         s3_client = boto3.client('s3')
-        result = get_object(Bucket=bucket_name, Key=key)
+        result = s3_client.get_object(Bucket=bucket_name, Key=key)
     except ClientError as e:
         logging.error(e)
         return None
@@ -49,8 +49,8 @@ def get_object(bucket_name, key):
 
 def main():
     #create_bucket('edu.au.cc.img-gallery')
-    #put_object('edu.au.cc.img-gallery', 'banana', 'yellow')
-    print(get_object('edu.au.cc.img-gallery', 'banana'))
+    put_object('edu.au.cc.img-gallery', 'banana420', 'bad')
+    print(get_object('edu.au.cc.img-gallery', 'banana420')['Body'].read())
 
 if __name__ == '__main__':
     main()

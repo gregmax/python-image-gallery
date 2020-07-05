@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <meta charset="utf-8" />
+  </head>
+  {% extends "layout.html" %}
+  {% block body %}
+    {% block content %}
+    <div>
+      <h1>Login</h1>
+      {% if error %}
+        <p class=error><strong>Error:</strong></p> {{ error }}
+      {% endif %}
+      <form action="/login" method="POST">
+        Username: <input name="username" id="username" value="{{ request.form['username'] }}" /><br />
+        Password: <input type="password" name="password" id="password" value="{{ request.form['password'] }}" /><br />
+        <input type="submit" value="Login" />
+      </form>
+    </div>
+    {% endblock %}
+</html>

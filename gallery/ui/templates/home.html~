@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home page</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h1>Main Menu</h1>
+    <div>
+        <a href="/upload/">Upload Image</a>
+    </div>
+    <br />
+    <div>
+        <a href="/view/">View Images</a>
+    </div>
+    <br />
+    <div>
+        <a href="/admin">Admin</a>
+    </div>
+    <br />
+    <div>
+        <a href="/login">Logoff</a>
+    </div>
+    <br />
+  </body>
+</html>
